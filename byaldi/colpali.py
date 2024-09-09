@@ -33,7 +33,7 @@ class ColPaliModel:
         index_name: Optional[str] = None,
         verbose: int = 1,
         load_from_index: bool = False,
-        index_root: str = ".byaldi",
+        index_root: str = "index1",
         device: Optional[Union[str, torch.device]] = None,
         **kwargs,
     ):
@@ -183,7 +183,7 @@ class ColPaliModel:
         n_gpu: int = -1,
         verbose: int = 1,
         device: Optional[Union[str, torch.device]] = None,
-        index_root: str = ".byaldi",
+        index_root: str = "index1",
         **kwargs,
     ):
         index_path = Path(index_root) /  Path(index_path)
@@ -399,11 +399,11 @@ class ColPaliModel:
                 image = Image.open(item)
                 self._add_to_index(image, store_collection_with_index, doc_id, metadata=metadata)
             else:
-                raise ValueError(f"Unsupported input type: {item.suffix}")
+                return #raise ValueError(f"Unsupported input type: {item.suffix}")
         elif isinstance(item, Image.Image):
             self._add_to_index(item, store_collection_with_index, doc_id, metadata=metadata)
         else:
-            raise ValueError(f"Unsupported input type: {type(item)}")
+            return #raise ValueError(f"Unsupported input type: {type(item)}")
 
     def _add_to_index(
         self,
@@ -561,9 +561,9 @@ class ColPaliModel:
                     # Process image file
                     images.append(Image.open(item))
                 else:
-                    raise ValueError(f"Unsupported file type: {item}")
+                    return # raise ValueError(f"Unsupported file type: {item}")
             else:
-                raise ValueError(f"Unsupported input type: {type(item)}")
+                return #raise ValueError(f"Unsupported input type: {type(item)}")
 
         with torch.no_grad():
             batch = process_images(self.processor, images)
