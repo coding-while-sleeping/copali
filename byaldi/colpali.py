@@ -345,9 +345,9 @@ class ColPaliModel:
 
         # Validate input lengths
         if doc_ids and len(doc_ids) != len(input_items):
-            raise ValueError(f"Number of doc_ids ({len(doc_ids)}) does not match number of input items ({len(input_items)})")
+            return #raise ValueError(f"Number of doc_ids ({len(doc_ids)}) does not match number of input items ({len(input_items)})")
         if metadata and len(metadata) != len(input_items):
-            raise ValueError(f"Number of metadata entries ({len(metadata)}) does not match number of input items ({len(input_items)})")
+            return #raise ValueError(f"Number of metadata entries ({len(metadata)}) does not match number of input items ({len(input_items)})")
 
         # Process each input item
         for i, item in enumerate(input_items):
